@@ -1,6 +1,8 @@
 from random import randint
 
 heads_or_tails = "\n1 - Heads\n2 - Tails\nHeads or tails? "
+total_count = 0
+wins = 0
 
 def flip_coin():
     return randint(1, 2)
@@ -31,8 +33,14 @@ while play == "y":
         continue
 
     print("Flipping the coin...")
+    total_count += 1
     flip = flip_coin()
     print("Heads!") if flip == 1 else print("Tails!")
-    print("You win!!!\n") if flip == choice else print("You lose!!!\n")
+    if flip == choice:
+        wins += 1
+        print("You win!!!\n")
+    else:
+        print("You lose!!!\n")
+    print("You have won {0} times in {1} tries.\n".format(wins, total_count))
     play = y_n_input("Would you like to play again? (y/n): ")
 print("Goodbye!")
